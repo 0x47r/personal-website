@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <title>Neutral profile placeholder</title>
+  <defs><clipPath id="circle"><circle cx="90" cy="90" r="90"/></clipPath></defs>
+  <g clip-path="url(#circle)">
+    <path fill="#edf0f3" d="M0 0h180v180H0z"/>
+    <circle cx="90" cy="66" r="31" fill="#c2cbd4"/>
+    <path d="M29 180v-17a61 61 0 0 1 122 0v17" fill="#c2cbd4"/>
+  </g>
+</svg>
