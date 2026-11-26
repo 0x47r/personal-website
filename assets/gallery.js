@@ -9,9 +9,7 @@
   const position = dialog.querySelector('.gallery-position');
   const photo = dialog.querySelector('.gallery-photo');
   const fullImage = photo.querySelector('img');
-  const postLabel = photo.querySelector('span');
   const caption = dialog.querySelector('#gallery-caption');
-  const pendingPost = dialog.querySelector('.gallery-post-pending');
   const thumbs = [...track.querySelectorAll('.gallery-thumb')];
   let currentPhoto = 0;
   let previewPhoto = 0;
@@ -78,15 +76,13 @@
     const postUrl = thumb.dataset.instagramUrl?.trim();
     fullImage.src = image.currentSrc || image.src;
     fullImage.alt = image.alt;
-    caption.textContent = thumb.dataset.caption;
+    caption.replaceChildren(document.getElementById(thumb.dataset.captionId).content.cloneNode(true));
     if (postUrl) {
       photo.href = postUrl;
     } else {
       if (document.activeElement === photo) dialogNext.focus();
       photo.removeAttribute('href');
     }
-    postLabel.hidden = !postUrl;
-    pendingPost.hidden = thumb.dataset.instagramUrl === undefined || Boolean(postUrl);
     position.textContent = `Photo ${index + 1} of ${thumbs.length}`;
   }
 
