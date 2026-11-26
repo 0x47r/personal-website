@@ -14,6 +14,15 @@
   let currentPhoto = 0;
   let previewPhoto = 0;
 
+  // Reserve each photo's final size before lazy-loaded images arrive.
+  for (const thumb of thumbs) {
+    const image = thumb.querySelector('img');
+    const width = Number(image.getAttribute('width'));
+    const height = Number(image.getAttribute('height'));
+    image.style.width = `min(${150 * width / height}px, 55vw, 400px)`;
+    image.style.aspectRatio = `${width} / ${height}`;
+  }
+
   // Copies on both sides keep the neighbouring photos visible across the loop.
   const originalItems = [...track.children];
   function copyItems() {
@@ -101,8 +110,7 @@
   allThumbs.forEach((thumb, itemIndex) => {
     const index = itemIndex % thumbs.length;
     thumb.addEventListener('focus', () => {
-      previewPhoto = index;
-      centrePhoto(index);
+      if (thumb.matches(':focus-visible')) centrePhoto(index);
     });
     thumb.addEventListener('click', () => {
       thumbs[index].focus({ preventScroll: true });
